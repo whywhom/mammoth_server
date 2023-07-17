@@ -10,7 +10,11 @@ module.exports = (app) => {
   router.get('/user', app.controller.home.login)
   
   router.post('/user/register', app.controller.home.register)
-  
+
+  router.get( '/admin', app.controller.admin.index )
+
+  router.post( '/admin/login', app.controller.admin.login )
+
   app.use(router.routes())
      .use(router.allowedMethods())
 }

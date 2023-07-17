@@ -3,6 +3,31 @@
   margin: 0;
 }
 
+ul.menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+ul.menu li {
+  float: left;
+}
+
+ul.menu li a {
+  display: block;
+  color: #333;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+ul.menu li a:hover {
+  background-color: #ddd;
+}
+
+
 body,html{
   font-size: 14px;
   color: #000;
@@ -76,7 +101,7 @@ a:hover {
   width: 100%;
   min-width: 1200px;
   height: 438px;
-  background: url(https://res.hjfile.cn/cc/cctalk.hujiang.com/home/images/banner-2QEtv.jpg?2QEtv) 50% no-repeat;
+  background: url(https://source.unsplash.com/collection/954550/1920x300) 50% no-repeat;
   background-size: cover;
 }
 .banner_box>.banner_inner{
@@ -85,9 +110,9 @@ a:hover {
   padding-top: 112px;
 }
 .banner_inner>.slogan{
-  width: 427px;
+  width: 54px;
   height: 54px;
-  background: url(https://res.hjfile.cn/cc/cctalk.hujiang.com/home/images/slogan@2x-3x9xM.png?3x9xM);
+  background: url(https://whywhom.github.io/css/images/avatar.png);
   background-size: 100% auto;
   margin: 0 auto 25px;
   text-indent: -99999rem;
