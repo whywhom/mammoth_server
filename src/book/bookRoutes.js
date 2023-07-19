@@ -44,6 +44,7 @@ router.get('/books/:id', async (ctx) => {
   }
 });
 
+// Add a new book
 router.post('/books', async (ctx) => {
   const { 
     coverUrl,
@@ -74,6 +75,49 @@ router.post('/books', async (ctx) => {
   } catch (error) {
     ctx.status = 500;
     ctx.body = { error: 'Error creating book' };
+  }
+});
+
+// Update a book by ID
+router.put('/books/:id', async (ctx) => {
+  const id = ctx.params.id;
+  const { title, author } = ctx.request.body;
+
+  try {
+    const docRef = db.collection(bookDbName).doc(id);
+    const doc = await docRef.get();
+
+    if (doc.exists) {
+      await docRef.update({ title, author });
+      ctx.body = { id, title, author };
+    } else {
+      ctx.status = 404;
+      ctx.body = { error: 'Book not found' };
+    }
+  } catch (error) {
+    ctx.status = 500;
+    ctx.body = { error: 'Error updating book' };
+  }
+});
+
+// Delete a book by ID
+router.delete('/books/:id', async (ctx) => {
+  const id = ctx.params.id;
+
+  try {
+    const docRef = db.collection(bookDbName).doc(id);
+    const doc = await docRef.get();
+
+    if (doc.exists) {
+      await docRef.delete();
+      ctx.body = { id };
+    } else {
+      ctx.status = 404;
+      ctx.body = { error: 'Book not found' };
+    }
+  } catch (error) {
+    ctx.status = 500;
+    ctx.body = { error: 'Error deleting book' };
   }
 });
 
