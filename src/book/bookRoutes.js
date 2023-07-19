@@ -1,24 +1,12 @@
 const Router = require('koa-router');
 const router = new Router();
-const {
-  firebase,
-  db
-} = require('../config/firebase')
-// const { initializeApp, cert } = require('firebase-admin/app');
-// const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
+const {db} = require('../config/firebase')
 
-// const serviceAccount = require('../../mammoth-server-firebase-adminsdk-zwo8r-ce24c487f9.json');
-
-// initializeApp({
-//   credential: cert(serviceAccount)
-// })
-
-// const db = getFirestore();
-
+const bookDbName = 'mammoth-books'
 
 // Route to get all books
 router.get('/books', async (ctx) => {
-    const snapshot = await db.collection('mammoth-books').get();
+    const snapshot = await db.collection(bookDbName).get();
     const books = []
     snapshot.forEach(doc => {
       const bookData = doc.data();
@@ -37,18 +25,56 @@ router.get('/books', async (ctx) => {
 });
 
 // Route to get a specific book by ID
-router.get('/books/:id', (ctx) => {
-  const id = parseInt(ctx.params.id);
-  const book = books.find((book) => book.id === id);
+router.get('/books/:id', async (ctx) => {
+  const id = ctx.params.id;
+  try {
+    const docRef = db.collection(bookDbName).doc(id);
+    const doc = await docRef.get();
 
-  if (book) {
-    ctx.body = book;
-  } else {
-    ctx.status = 404;
-    ctx.body = { error: 'Book not found' };
+    if (doc.exists) {
+      const book = doc.data();
+      ctx.body = book;
+    } else {
+      ctx.status = 404;
+      ctx.body = { error: 'Book not found' };
+    }
+  } catch (error) {
+    ctx.status = 500;
+    ctx.body = { error: 'Error retrieving book' };
   }
 });
 
-// Add more routes as needed
+router.post('/books', async (ctx) => {
+  const { 
+    coverUrl,
+    code,
+    auth,
+    price,
+    name,
+    downloadUrl,
+    publisher, 
+  } = ctx.request.body;
+
+  try {
+    const bookData = {
+      coverUrl,
+      code,
+      auth,
+      price,
+      name,
+      downloadUrl,
+      publisher,
+    };
+
+    const docRef = await db.collection(bookDbName).add(bookData);
+
+    const newBookId = docRef.id;
+    ctx.status = 201;
+    ctx.body = { id: newBookId, ...bookData };
+  } catch (error) {
+    ctx.status = 500;
+    ctx.body = { error: 'Error creating book' };
+  }
+});
 
 module.exports = router;
