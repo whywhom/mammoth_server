@@ -128,3 +128,5 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+mammoth-server-firebase-adminsdk-zwo8r-ce24c487f9.json

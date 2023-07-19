@@ -1,14 +1,35 @@
-const {currentUser} = require("../service/home")
+const {readAll, currentUser} = require("../service/home")
 module.exports = {
 
   index: async(ctx, next) => {
     let user = currentUser()
+    let jsonData
+    try {
+      const snapshot = await readAll()
+      const books = [];
+
+      snapshot.forEach(doc => {
+        const bookData = doc.data();
+        const book = {
+          id: doc.id,
+          ...bookData
+        };
+        books.push(book);
+      });
+      
+      // jsonData = JSON.stringify(books)
+      jsonData = {"books": books}
+    } catch (error) {
+      console.error('Error retrieving books:', error);
+      ctx.status = 500;
+      ctx.body = { message: 'Error retrieving books' };
+    }
     if(user == null){
       await ctx.render('home/login', {
         btnName: 'GoGoGo'
       })
     } else {
-      await ctx.render("home/index", {title: "iKcamp欢迎您"})
+      await ctx.render("home/index", JSON.stringify(jsonData))
     }
   },
 

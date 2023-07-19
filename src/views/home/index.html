@@ -8,3 +8,10 @@
     </div>
 </div>
 {% endblock %}
+{% block content %}
+{{#each books}}
+  <p>Name: {{name}}</p>
+  <p>Price: ${{price}}</p>
+  <hr>
+{{/each}}
+{% endblock %}

@@ -3,7 +3,7 @@ const ip = require("ip")
 const bodyParser = require('koa-bodyparser')
 const nunjucks = require('koa-nunjucks-2')
 const staticFiles = require('koa-static')
-
+const handlebars = require('koa-handlebars');
 const miSend = require('./mi-send')
 const miLog = require('./mi-log')
 const miHttpError = require('./mi-http-error')
@@ -34,6 +34,14 @@ module.exports = (app) => {
       trimBlocks: true
     }
   }));
+
+  // app.use(
+  //   handlebars({
+  //     extension: ['.html'],
+  //     viewsDir: path.join(__dirname),
+  //     partialsDir: path.join(__dirname),
+  //   })
+  // );
 
   app.use(bodyParser())
   app.use(miSend())

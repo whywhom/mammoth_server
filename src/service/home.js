@@ -1,4 +1,7 @@
 const firebase = require("firebase/app");
+const { initializeApp, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
+
 const { 
   getAuth, 
   signInWithEmailAndPassword,
@@ -15,9 +18,8 @@ const firebaseConfig = {
     measurementId: "G-S94TBV4LHZ"
 };
 
-firebase.initializeApp(firebaseConfig);
-  
 const auth = getAuth();
+const db = getFirestore();
 
 module.exports = {
   currentUser: function() { 

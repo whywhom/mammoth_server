@@ -1,9 +1,4 @@
 const firebase = require("firebase/app");
-const { 
-  getAuth, 
-  signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
- } = require("firebase/auth");
 
 const firebaseConfig = {
     apiKey: "AIzaSyCDaWyxU1Vr5Dr0updOPmV0AVu-cdz4AhA",
@@ -16,8 +11,20 @@ const firebaseConfig = {
     measurementId: "G-S94TBV4LHZ"
 };
 
-firebase.initializeApp({
-    apiKey: apiKey,
-  });
-  
-const auth = getAuth();
+const { initializeApp, cert } = require('firebase-admin/app');
+const { getFirestore, Timestamp, FieldValue, Filter } = require('firebase-admin/firestore');
+
+const serviceAccount = require('../../mammoth-server-firebase-adminsdk-zwo8r-ce24c487f9.json');
+
+initializeApp({
+  credential: cert(serviceAccount)
+})
+
+const db = getFirestore();
+
+firebase.initializeApp(firebaseConfig);
+
+module.exports = {
+  firebase,
+  db
+}
