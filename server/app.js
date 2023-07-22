@@ -1,10 +1,10 @@
 const Koa = require('koa')
 const router = require('./src/router/router')
 const bookRoutes = require('./src/book/bookRoutes');
-
 const middleware = require('./src/middleware')
 
 const app = new Koa()
+
 middleware(app)
 router(app)
 app.use(bookRoutes.routes());

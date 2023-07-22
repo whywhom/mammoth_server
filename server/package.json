@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/BruceCham/koa2-tutorial#readme",
   "dependencies": {
+    "cors": "^2.8.5",
     "firebase": "^9.9.1",
     "firebase-admin": "^11.10.1",
     "firebaseui": "^5.0.0",
@@ -27,6 +28,7 @@
     "koa-nunjucks-2": "^3.0.2",
     "koa-router": "^7.2.1",
     "koa-static": "^4.0.1",
+    "koa2-cors": "^2.0.6",
     "log4js": "^6.9.1",
     "nodemon": "^3.0.1",
     "nunjucks": "^3.0.1"

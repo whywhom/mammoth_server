@@ -7,6 +7,7 @@ const handlebars = require('koa-handlebars');
 const miSend = require('./mi-send')
 const miLog = require('./mi-log')
 const miHttpError = require('./mi-http-error')
+var cors = require('koa2-cors');
 
 // 引入规则中件间
 const miRule = require('./mi-rule')
@@ -27,6 +28,8 @@ module.exports = (app) => {
 
   app.use(staticFiles(path.resolve(__dirname, "../public")))
 
+  app.use(cors());
+
   app.use(nunjucks({
     ext: 'html',
     path: path.join(__dirname, '../views'),
@@ -34,14 +37,6 @@ module.exports = (app) => {
       trimBlocks: true
     }
   }));
-
-  // app.use(
-  //   handlebars({
-  //     extension: ['.html'],
-  //     viewsDir: path.join(__dirname),
-  //     partialsDir: path.join(__dirname),
-  //   })
-  // );
 
   app.use(bodyParser())
   app.use(miSend())
