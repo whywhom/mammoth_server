@@ -1,7 +1,7 @@
 <template>
   <h1>Book List</h1>
   <div class="book-grid">
-    <div v-for="book in books.books" :key="book.id" class="book-card">
+    <div v-for="book in books.books" :key="book.id" class="book-card" @click="goToDetailPage(book.id)">
       <img :src="book.coverUrl" alt="Book Cover" />
       <p class="title">{{ book.name }}</p>
       <p class="author">作者：{{ book.auth }}</p>
@@ -14,7 +14,8 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import axios from 'axios';
-
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const books = ref([]);
 
 onMounted(async () => {
@@ -27,6 +28,10 @@ onMounted(async () => {
     console.error('Error fetching books:', error);
   }
 });
+
+const goToDetailPage = (bookId) => {
+  router.push(`/book/${bookId}`);
+};
 </script>
 
 <style>

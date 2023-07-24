@@ -1,18 +1,21 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 import BooksView from '../views/BooksView.vue'
+import BooksDetail from '../views/BookDetail.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
       name: 'home',
-      component: HomeView
+      component: BooksView
     },
     {
-      path: '/books',
       name: 'Books',
-      component: BooksView
+      path: '/book/:id', 
+      component: BooksDetail, 
+      props: true 
+
     },
     {
       path: '/about',
