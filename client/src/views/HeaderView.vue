@@ -1,11 +1,13 @@
 <template>
-    <main>
-        <HeaderNav />
-    </main>
+    <v-app-bar app>
+        <HeaderView/>
+    </v-app-bar>
+    
 </template>
   
-<script lang="ts" setup>
-import HeaderNav from "../components/HeaderNav.vue"
+<script setup lang="ts">
+import HeaderView from '../components/HeaderNav.vue'
 </script>
   
-<style></style>
+<style>
+</style>

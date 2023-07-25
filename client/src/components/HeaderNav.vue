@@ -1,39 +1,22 @@
-<script setup lang="ts">
-defineProps<{
-  msg: string
-}>()
+<script lang="ts">
+export default {
+  data: () => ({
+    tab: null,
+  }),
+}
 </script>
 
 <template>
-  <div class="greetings">
-    <h1 class="green">"title"</h1>
-    <h3>
-      You’ve successfully created a project with
-      <a href="https://vitejs.dev/" target="_blank" rel="noopener">Vite</a> +
-      <a href="https://vuejs.org/" target="_blank" rel="noopener">Vue 3</a>. What's next?
-    </h3>
-  </div>
+  <v-toolbar-title class="headline text-uppercase">
+    <span>悦读书馆 &nbsp;</span>
+    <span class="font-weight-light">MATERIAL DESIGN</span>
+  </v-toolbar-title>
+  <v-spacer></v-spacer>
+  <v-tabs v-model="tab" align-tabs="end">
+    <RouterLink to="/"><v-tab :value="1">悦读书馆</v-tab></RouterLink>
+    <RouterLink to="/login"><v-tab :value="2">Login</v-tab></RouterLink>
+  </v-tabs>
 </template>
 
 <style scoped>
-.greetings{
-    width: 100%;
-    height: 100px;
-}
-
-h1 {
-  font-weight: 500;
-  font-size: 2.6rem;
-  position: relative;
-  top: -10px;
-}
-
-h3 {
-  font-size: 1.2rem;
-}
-
-.greetings h1,
-.greetings h3 {
-  text-align: center;
-}
 </style>

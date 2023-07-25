@@ -61,7 +61,9 @@ router.post('/books', async (ctx) => {
     publish_date,
     format,
     note,
-    rank
+    rank,
+    download_times,
+    uploader_id
   } = ctx.request.body;
 
   try {
@@ -80,7 +82,9 @@ router.post('/books', async (ctx) => {
       publish_date,
       format,
       note,
-      rank
+      rank,
+      download_times,
+      uploader_id
     };
 
     const docRef = await db.collection(bookDbName).add(bookData);
