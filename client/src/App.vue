@@ -10,15 +10,20 @@ export default {
 
 <template>
   <v-app>
-    <v-app-bar app>
-      <v-tabs v-model="tab" align-tabs="center">
+    <v-toolbar app>
+      <v-toolbar-title class="headline text-uppercase">
+        <span>悦读书馆 &nbsp;</span>
+        <span class="font-weight-light">MATERIAL DESIGN</span>
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-tabs v-model="tab" align-tabs="end">
           <v-tab :value="1"><RouterLink to="/">悦读书馆</RouterLink></v-tab>
           <v-tab :value="2"><RouterLink to="/about">关于</RouterLink></v-tab>
         </v-tabs>
-    </v-app-bar>
-    <v-main>
+    </v-toolbar>
+      <v-content>
       <router-view></router-view>
-    </v-main>
+    </v-content>
   </v-app>
 </template>
 

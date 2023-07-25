@@ -3,8 +3,8 @@
   <div class="book-grid">
     <div v-for="book in books.books" :key="book.id" class="book-card" @click="goToDetailPage(book.id)">
       <img :src="book.coverUrl" alt="Book Cover" />
-      <p class="title">{{ book.name }}</p>
-      <p class="author">作者：{{ book.auth }}</p>
+      <p class="title">{{ book.title }}</p>
+      <p class="author">作者：{{ book.author }}</p>
       <p class="price">价格：{{ book.price }}</p>
     </div>
   </div>

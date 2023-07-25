@@ -49,11 +49,19 @@ router.post('/books', async (ctx) => {
   const { 
     coverUrl,
     code,
-    auth,
+    author,
     price,
     name,
     downloadUrl,
     publisher, 
+    title,
+    book_description,
+    author_description,
+    isbn,
+    publish_date,
+    format,
+    note,
+    rank
   } = ctx.request.body;
 
   try {
@@ -65,6 +73,14 @@ router.post('/books', async (ctx) => {
       name,
       downloadUrl,
       publisher,
+      title,
+      book_description,
+      author_description,
+      isbn,
+      publish_date,
+      format,
+      note,
+      rank
     };
 
     const docRef = await db.collection(bookDbName).add(bookData);
