@@ -1,18 +1,31 @@
 <template>
-    <div class="login-container">
-      <h2>Login</h2>
-      <form @submit.prevent="login">
-        <div class="form-group">
-          <label for="email">Email</label>
-          <input type="email" id="email" v-model="email" required />
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" id="password" v-model="password" required />
-        </div>
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <v-container fluid>
+      <v-row align="center" justify="center">
+        <v-col cols="12" md="12" lg="12" xl="12" xxl="12">
+          <v-card class="elevation-12" lg="12" xl="12" xxl="12">
+            <v-card-title class="text-center">
+              <h2>Login</h2>
+            </v-card-title>
+            <v-card-text>
+              <v-form @submit.prevent="login">
+                <v-text-field
+                  v-model="email"
+                  label="Email"
+                  required
+                ></v-text-field>
+                <v-text-field
+                  v-model="password"
+                  label="Password"
+                  type="password"
+                  required
+                ></v-text-field>
+                <v-btn type="submit" color="primary" block>Login</v-btn>
+              </v-form>
+            </v-card-text>
+          </v-card>
+        </v-col>
+      </v-row>
+    </v-container>
   </template>
   
   <script setup>
@@ -27,38 +40,3 @@
     console.log('Password:', password.value);
   };
   </script>
-  
-  <style>
-  .login-container {
-    max-width: 400px;
-    margin: 0 auto;
-    padding: 20px;
-    border-radius: 5px;
-  }
-  
-  .form-group {
-    margin-bottom: 15px;
-  }
-  
-  label {
-    font-weight: bold;
-  }
-  
-  input {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  button {
-    width: 100%;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  </style>
-  

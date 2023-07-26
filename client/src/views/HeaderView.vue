@@ -2,7 +2,6 @@
     <v-app-bar app>
         <HeaderView/>
     </v-app-bar>
-    
 </template>
   
 <script setup lang="ts">
