@@ -7,9 +7,11 @@ module.exports = (app) => {
   
   router.get('/home/:id/:name', app.controller.home.homeParams)
   
-  router.get('/user', app.controller.home.login)
+  // router.get('/user', app.controller.home.login)
   
-  router.post('/user/register', app.controller.home.register)
+  // router.post('/user/register', app.controller.home.register)
+
+  // router.post('/user/login', app.controller.userController.login)
 
   router.get( '/admin', app.controller.admin.index )
 

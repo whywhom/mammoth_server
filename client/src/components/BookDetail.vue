@@ -37,8 +37,10 @@ onMounted(async () => {
       <p class="description">{{ book.book_description }}</p>
       <p class="author_intro">作者简介：</p>
       <p class="author_description">{{ book.author_description }}</p>
-      <p class="downloadUrl">下载地址：{{ book.downloadUrl }}</p>
-      <p class="code">提取码{{ book.code }}</p>
+      <p class="downloadUrl">下载地址:</p>
+      <li v-for="item in book.downloadUri" :key="item.id">
+        <a :href="item.siteUrl" target="_blank">{{ item.siteName }}</a>
+      </li>
       <!-- Add other book details here, like ISBN, published date, etc. -->
     </div>
     </div>

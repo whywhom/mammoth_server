@@ -6,22 +6,43 @@ const bookDbName = 'mammoth-books'
 
 // Route to get all books
 router.get('/books', async (ctx) => {
-    const snapshot = await db.collection(bookDbName).get();
-    const books = []
+
+    const { page, pageSize } = ctx.request.query;
+    const pageNum = parseInt(page) || 1;
+    const pageSizeNum = parseInt(pageSize) || 10;
+
+    // Calculate pagination parameters
+    const totalBooks = await db.collection(bookDbName).get();
+    const totalItems = totalBooks.size;
+    const totalPages = Math.ceil(totalItems / pageSizeNum);
+    const startIndex = (pageNum - 1) * pageSizeNum;
+
+    // const snapshot = await db.collection(bookDbName).get();
+    const snapshot = await db.collection(bookDbName).limit(pageSizeNum).offset(startIndex).get();
+
+    const bookItems = []
     snapshot.forEach(doc => {
       const bookData = doc.data();
       const bookItem = {
           id: doc.id,
           ...bookData
       };
-      books.push(bookItem);
+      bookItems.push(bookItem);
     });
-    const bookObj = {
-      books,
-      total: books.length,
+
+    // Convert the snapshot to an array of book data
+    const books = snapshot.docs.map((doc) => doc.data());
+
+    ctx.body = {
+      currentPage: pageNum,
+      pageSize: pageSizeNum,
+      totalPages,
+      totalItems,
+      books: bookItems,
     };
-    const bookJson = JSON.stringify(bookObj)
-    ctx.body = bookJson;
+
+    // const bookJson = JSON.stringify(bookObj)
+    // ctx.body = bookJson;
 });
 
 // Route to get a specific book by ID
@@ -52,7 +73,7 @@ router.post('/books', async (ctx) => {
     author,
     price,
     name,
-    downloadUrl,
+    downloadUri,
     publisher, 
     title,
     book_description,
@@ -63,7 +84,9 @@ router.post('/books', async (ctx) => {
     note,
     rank,
     download_times,
-    uploader_id
+    uploader_id,
+    tag,
+    category
   } = ctx.request.body;
 
   try {
@@ -73,7 +96,7 @@ router.post('/books', async (ctx) => {
       auth,
       price,
       name,
-      downloadUrl,
+      downloadUri,
       publisher,
       title,
       book_description,
@@ -84,7 +107,9 @@ router.post('/books', async (ctx) => {
       note,
       rank,
       download_times,
-      uploader_id
+      uploader_id,
+      tag,
+      category
     };
 
     const docRef = await db.collection(bookDbName).add(bookData);
