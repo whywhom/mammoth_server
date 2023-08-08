@@ -26,26 +26,31 @@ const tag = ref('');
 
 const addBook = async () => {
   try {
+    const downloadInfo = [{
+    siteUrl: downloadUri.value,
+    siteCode: code.value,
+    siteName: "城通网盘"
+    }]
     const response = await axios.post(`http://localhost:3000/books`, {
       name: name.value,
       title: title.value,
       author: author.value,
-      price: price.value,
-      publisher: publisher.value,
+      price: price.value != null? price.value:"0",
+      publisher: publisher.value != null? publisher.value:"",
       publish_date: new Date().toLocaleString(),
-      book_description: book_description.value,
-      author_description: author_description.value,
-      note: note.value,
-      rank: rank.value,
-      format: format.value,
-      downloadUri: downloadUri.value,
+      book_description: book_description.value != null? book_description.value:"",
+      author_description: author_description.value != null? author_description.value:"",
+      note: note.value != null? note.value:"",
+      rank: rank.value != null? rank.value:"",
+      format: format.value != null? format.value:"",
+      downloadUri: downloadInfo != null? downloadInfo:[{}],
       code: code.value,
       coverUrl: coverUrl.value,
-      isbn: isbn.value,
-      download_times: download_times.value,
-      uploader_id: user?.user.uid,
-      category: category.value,
-      tag: tag.value,
+      isbn: isbn.value != null? isbn.value:"",
+      download_times: download_times.value != null? download_times.value:"",
+      uploader_id: user?.user.uid != null? user?.user.uid:"",
+      category: category.value != null? category.value.split(";"):"",
+      tag: tag.value != null? tag.value.split(";"):"",
     });
 
     console.log('Book added successfully');

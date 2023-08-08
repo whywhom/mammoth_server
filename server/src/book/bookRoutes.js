@@ -93,7 +93,7 @@ router.post('/books', async (ctx) => {
     const bookData = {
       coverUrl,
       code,
-      auth,
+      author,
       price,
       name,
       downloadUri,

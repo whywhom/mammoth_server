@@ -1,20 +1,12 @@
 <template>
   <p>共有{{ books.totalItems }}本书籍</p>
-  <!-- <div class="book-grid">
-    <div v-for="book in books.books" :key="book.id" class="book-card" @click="goToDetailPage(book.id)">
-      <img :src="book.coverUrl" alt="Book Cover" />
-      <p class="title">{{ book.title }}</p>
-      <p class="author">作者：{{ book.author }}</p>
-      <p class="price">价格：{{ book.price }}</p>
-    </div>
-  </div> -->
   <v-row>
-    <v-col v-for="book in books.books" :key="book.id" cols="5" >
+    <v-col v-for="book in books.books" :key="book.id"  >
       <v-card class="book-card" @click="goToDetailPage(book.id)">
         <!-- Your book grid item content here -->
         <img :src="book.coverUrl" alt="Book Cover" />
-        <h4>{{ book.title }}</h4>
-        <h5>By {{ book.author }}</h5>
+        <p>{{ book.title }}</p>
+        <!-- <h5>By {{ book.author }}</h5> -->
         <!-- <p class="price">价格：{{ book.price }}</p> -->
       </v-card>
     </v-col>
@@ -62,7 +54,7 @@ const goToDetailPage = (bookId) => {
   border: 1px solid #ccc;
   padding: 1rem;
   text-align: center;
-  max-width: 150px;
+  max-width: 200px;
   /* Limit each item to a maximum width of 200px */
 }
 
