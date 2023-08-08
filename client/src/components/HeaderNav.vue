@@ -1,10 +1,11 @@
-<script lang="ts" setup>
+<script setup>
 import { useStore } from 'vuex';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import userIcon from './icons/IconUser.vue'
 const store = useStore();
-const isLoggedIn = computed(() => store.getters.isLoggedIn);
-
+const isLoggedIn = store.getters.isLoggedIn;
+const isAdmin = store.getters.isAdmin;
+const user = store.getters.getUser;
 const userAvatar = ref('path-to-default-avatar.jpg'); // Provide a default avatar path
 const showUserMenu = ref(false);
 
@@ -21,8 +22,9 @@ const toggleUserMenu = () => {
   </v-toolbar-title>
   <v-spacer></v-spacer>
   <v-tabs v-model="tab" align-tabs="end">
-    <RouterLink to="/"><v-tab :value="1">图书</v-tab></RouterLink>
-    <RouterLink to="/login"><v-tab :value="2">{{ isLoggedIn ? '登录' : '退出' }}</v-tab></RouterLink>    
+    <!-- <RouterLink to="/"><v-tab :value="1">图书</v-tab></RouterLink>
+    <RouterLink to="/login"><v-tab :value="2">{{ isLoggedIn ? '登录' : '退出' }}</v-tab></RouterLink>     -->
+    <RouterLink to="/admin/main"><v-tab :value="1">{{isAdmin? '管理' : ''}}</v-tab></RouterLink>
   </v-tabs>
 </template>
 

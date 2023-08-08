@@ -13,9 +13,9 @@
       <v-card class="book-card" @click="goToDetailPage(book.id)">
         <!-- Your book grid item content here -->
         <img :src="book.coverUrl" alt="Book Cover" />
-        <h3>{{ book.title }}</h3>
-        <p>By {{ book.author }}</p>
-        <p class="price">价格：{{ book.price }}</p>
+        <h4>{{ book.title }}</h4>
+        <h5>By {{ book.author }}</h5>
+        <!-- <p class="price">价格：{{ book.price }}</p> -->
       </v-card>
     </v-col>
   </v-row>

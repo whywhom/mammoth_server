@@ -32,6 +32,14 @@ onMounted(async () => {
       <h1>{{ book.title }}</h1>
       <p class="author">By {{ book.author }}</p>
       <p class="format">格式： {{ book.format }}</p>
+      <p class="category">分类:</p>
+      <li v-for="item in book.category" :key="item.id">
+        {{ item }}
+      </li>
+      <p class="tag">标签:</p>
+      <li v-for="item in book.tag" :key="item.id">
+        {{ item }}
+      </li>
       <p class="rank">评价： {{ book.rank }}🌟</p>
       <p class="book_intro">图书介绍：</p>
       <p class="description">{{ book.book_description }}</p>
@@ -39,7 +47,8 @@ onMounted(async () => {
       <p class="author_description">{{ book.author_description }}</p>
       <p class="downloadUrl">下载地址:</p>
       <li v-for="item in book.downloadUri" :key="item.id">
-        <a :href="item.siteUrl" target="_blank">{{ item.siteName }}</a>
+        <a :href="item.siteUrl" target="_blank">{{ item.siteName }}</a> 
+        提取码：{{ item.siteCode }}
       </li>
       <!-- Add other book details here, like ISBN, published date, etc. -->
     </div>

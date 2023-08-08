@@ -1,4 +1,7 @@
 const router = require('koa-router')()
+// const bookRoutes = require('../book/bookRoutes');
+// const userRoutes = require('../user/userRoutes');
+// const adminRoutes = require('../admin/adminRoutes');
 
 module.exports = (app) => {
   router.get( '/', app.controller.home.index )
@@ -6,16 +9,12 @@ module.exports = (app) => {
   router.get('/home', app.controller.home.home)
   
   router.get('/home/:id/:name', app.controller.home.homeParams)
-  
-  // router.get('/user', app.controller.home.login)
-  
-  // router.post('/user/register', app.controller.home.register)
 
-  // router.post('/user/login', app.controller.userController.login)
+  // router.get( '/admin', app.controller.admin.index )
 
-  router.get( '/admin', app.controller.admin.index )
+  // router.post( '/admin/login', app.controller.admin.login )
 
-  router.post( '/admin/login', app.controller.admin.login )
+ 
 
   app.use(router.routes())
      .use(router.allowedMethods())

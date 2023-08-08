@@ -49,9 +49,10 @@ module.exports = {
       data = {
         status: 0,
         data: {
-          title: "个人中心",
-          content: "欢迎进入个人中心",
-          user: user
+          title: "登录成功",
+          user: user,
+          isLoggedin: true,
+          isAdmin: user.email == 'whywhom@163.com'? true : false
         }
       }
    
@@ -63,7 +64,9 @@ module.exports = {
         status: -1,
         data: {
           title: '登录失败',
-          content: "请输入正确的账号信息"
+          user: null,
+          isLoggedin: false,
+          isAdmin: false
         },
         errorCode: errorCode,
         errorMessage: errorMessage

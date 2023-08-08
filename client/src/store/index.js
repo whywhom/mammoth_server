@@ -1,28 +1,25 @@
 import { createStore } from 'vuex';
 
 export default createStore({
-  state: {
-    user: null,
-  },
-  mutations: {
-    SET_USER(state, user) {
-      state.user = user;
+    state: {
+        user: null,
     },
-  },
-  actions: {
-    setUser({ commit }, user) {
-      commit('SET_USER', user);
+    mutations: {
+        SET_USER(state, user) {
+            state.user = user;
+        },
     },
-    clearUser({ commit }) {
-      commit('SET_USER', null);
+    actions: {
+        setUser({ commit }, user) {
+            commit('SET_USER', user);
+        },
+        clearUser({ commit }) {
+            commit('SET_USER', null);
+        },
     },
-  },
-  getters: {
-    getUser(state) {
-      return state.user;
+    getters: {
+        getUser(state) {
+            return state.user;
+        },
     },
-    isLoggedIn(state) {
-      return state.user !== null;
-    },
-  },
 });
