@@ -1,0 +1,24 @@
+{% extends "common/layout-home.html" %} 
+{% block homeBanner %}
+<div class="banner_box">
+    <div class="banner_inner">
+        <h2 class="slogan">悦读书馆</h2>
+        <p class="des">悦读书馆是由个人维护的图书下载网站<br>有时你们真的很慷慨，其实闲时来逛逛，已经是最好的支持了。</p>
+        <a href="/login" title="gogogo" class="btn" id="gogogo">进入战场</a>
+    </div>
+</div>
+{% endblock %}
+{% block content %}
+<div class="hp-dialog">
+  <div class="hp-box">
+    <form action="/user/register" method="post">
+      <h1>到达战场</h1>
+      <p class="error">{{content}}</p>
+      <input type="text" name="name" placeholder="请输入用户名：">
+      <input type="password" name="password" placeholder="请输入密码：">
+      <button>Login</button>
+    </form>
+  </div>
+</div>
+<div class="hp-overlay"></div>
+{% endblock %}
