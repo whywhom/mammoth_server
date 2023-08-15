@@ -8,8 +8,29 @@ import { ref, onMounted } from 'vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
-const book = ref({});
+// var book: { id: string,
+//     coverUrl: string,
+//     code: string;
+//     author: string;
+//     price: string,
+//     name: string,
+//     downloadUri: [],
+//     publisher: string, 
+//     title: string,
+//     book_description: string,
+//     author_description: string,
+//     isbn: string,
+//     publish_date: string,
+//     format: string,
+//     note: string,
+//     rank: string,
+//     download_times: string,
+//     uploader_id: string,
+//     tag:[],
+//     category:[] };
+
 const router = useRouter();
+const book = ref();
 
 onMounted(async () => {
   const bookId = router.currentRoute.value.params.id;
@@ -26,29 +47,29 @@ onMounted(async () => {
 <template>
   <div class="book-detail">
     <div class="book-cover">
-      <img :src="book.coverUrl" alt="Book Cover" class="cover-image" />
+      <img :src="book?.coverUrl" alt="Book Cover" class="cover-image" />
     </div>
     <div class="book-info">
-      <h1>{{ book.title }}</h1>
-      <p class="author">By {{ book.author }}</p>
-      <p class="format">格式： {{ book.format }}</p>
+      <h1>{{ book?.title }}</h1>
+      <p class="author">By {{ book?.author }}</p>
+      <p class="format">格式： {{ book?.format }}</p>
       <p class="category">分类:</p>
-      <li v-for="item in book.category" :key="item.id">
+      <li v-for="item in book?.category" :key="item">
         {{ item }}
       </li>
       <p class="tag">标签:</p>
-      <li v-for="item in book.tag" :key="item.id">
+      <li v-for="item in book?.tag" :key="item">
         {{ item }}
       </li>
-      <p class="rank">评价： {{ book.rank }}🌟</p>
+      <p class="rank">评价： {{ book?.rank }}🌟</p>
       <p class="book_intro">图书介绍：</p>
-      <p class="description">{{ book.book_description }}</p>
+      <p class="description">{{ book?.book_description }}</p>
       <p class="author_intro">作者简介：</p>
-      <p class="author_description">{{ book.author_description }}</p>
+      <p class="author_description">{{ book?.author_description }}</p>
       <p class="downloadUrl">下载地址:</p>
-      <li v-for="item in book.downloadUri" :key="item.id">
-        <a :href="item.siteUrl" target="_blank">{{ item.siteName }}</a> 
-        提取码：{{ item.siteCode }}
+      <li v-for="item in book?.downloadUri" :key="item">
+        <a :href="item['siteUrl']" target="_blank">{{ item['siteName'] }}</a> 
+        提取码：{{ item['siteCode'] }}
       </li>
       <!-- Add other book details here, like ISBN, published date, etc. -->
     </div>
