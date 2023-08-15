@@ -24,7 +24,7 @@ const login = async () => {
         const userInfo = response.data;
         store.dispatch('setUser', userInfo);
         // After successful login, get the redirect route from the query parameters
-        const redirect = router.currentRoute.value.query.redirect || '/'; // Use '/' as the default fallback route
+        const redirect = router.currentRoute.value || "/"; // Use '/' as the default fallback route
         // Navigate to the main page (Home.vue)
         router.push(redirect);
 
